@@ -1,0 +1,84 @@
+<!-- Solid Note CRUD App -->
+<!-- extends https://github.com/ewingson/solid-basic -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solid Note App</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        #note-section { margin-top: 1.5rem; }
+        #note-section textarea { width: 100%; min-height: 8rem; font-size: 1rem; }
+        #meta-table td:first-child { font-weight: bold; min-width: 11rem; }
+        #status { min-height: 1.4rem; font-style: italic; color: #555; }
+        .btn-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Solid Note</h1>
+
+        <!-- loading -->
+        <div id="loading"><p>Initializing session…</p></div>
+
+        <!-- guest -->
+        <div id="auth-guest" hidden>
+            <p>You are not logged in.</p>
+            <button id="login-button">Login with your IdP</button>
+        </div>
+
+        <!-- logged-in -->
+        <div id="auth-user" hidden>
+            <p>Hello, <strong id="username"></strong>!</p>
+
+            <table id="meta-table">
+                <tr><td>WebID</td>        <td><span id="webid"></span></td></tr>
+                <tr><td>Formatted name</td><td><span id="fn"></span></td></tr>
+                <tr><td>Preferences</td>  <td><span id="pref"></span></td></tr>
+                <tr><td>Public index</td> <td><span id="pubind"></span></td></tr>
+                <tr><td>Private index</td><td><span id="privind"></span></td></tr>
+                <tr><td>Root storage</td> <td><span id="root"></span></td></tr>
+            </table>
+
+            <button id="logout-button" style="margin-top:.75rem">Log out</button>
+
+            <hr>
+
+            <!-- Note CRUD -->
+            <div id="note-section">
+                <h2>Note — <code id="note-url"></code></h2>
+
+                <!-- metadata display (read/create/update) -->
+                <table id="note-meta" hidden>
+                    <tr><td>dcterms:title</td>      <td><span id="n-title"></span></td></tr>
+                    <tr><td>dcterms:creator</td>    <td><span id="n-creator"></span></td></tr>
+                    <tr><td>dcterms:created</td>    <td><span id="n-created"></span></td></tr>
+                    <tr><td>dcterms:modified</td>   <td><span id="n-modified"></span></td></tr>
+                    <tr><td>dcterms:type</td>       <td><span id="n-type"></span></td></tr>
+                    <tr><td>dcterms:identifier</td> <td><span id="n-identifier"></span></td></tr>
+                </table>
+
+                <label for="note-body"><strong>dcterms:description</strong></label><br>
+                <textarea id="note-body" placeholder="Write your note here…"></textarea>
+
+                <div class="btn-row">
+                    <button id="btn-read">Read</button>
+                    <button id="btn-create">Create</button>
+                    <button id="btn-update">Update</button>
+                    <button id="btn-delete">Delete</button>
+                </div>
+                <p id="status"></p>
+            </div>
+        </div>
+
+        <br><br>
+        <div align="center">
+            <a href="https://github.com/ewingson/solid-basic">code</a>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@inrupt/solid-client-authn-browser@3.1.0/dist/solid-client-authn.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/n3@1.26.0/browser/n3.min.js"></script>
+    <script src="slogic.js"></script>
+</body>
+</html>

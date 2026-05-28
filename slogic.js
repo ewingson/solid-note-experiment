@@ -172,7 +172,7 @@ function buildNoteTurtle(noteUrl, webId, description, existingCreated) {
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <${noteUrl}>
-    dcterms:title       "My Solid Note" ;
+    dcterms:title       "this Solid Note" ;
     dcterms:description "${esc(description)}" ;
     dcterms:creator     <${webId}> ;
     dcterms:created     "${created}"^^xsd:dateTime ;
